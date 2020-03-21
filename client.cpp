@@ -48,6 +48,10 @@ int main(int argc, char *argv[]){
 			string dataSend;
 			// Get user Input
 			getline(cin, dataSend);
+			if(dataSend == "quit()"){
+				kill(pid, SIGTERM);
+				return 0;
+			}
 			// Send to server
 			int sendRes = send(sock, dataSend.c_str(), dataSend.size()+1, 0);
 			if(sendRes == -1){

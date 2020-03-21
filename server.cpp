@@ -68,11 +68,18 @@ int main(){
 		cout << host << " connected on " << ntohs(client.sin_port) << '\n';
 	}
 
+	string dataSend = "Welcome to SimpleServer!";
+	// Send to client
+	int sendRes = send(clientsocket, dataSend.c_str(), dataSend.size()+1, 0);
+	if(sendRes == -1){
+		cout << "Error sending to server!\n";
+	}
 
 	int pid = fork();
 	if(pid == 0){
 		// Listening Process
 		cout << "Waiting for message\n";
+		string datarecv;
 		char buffer[4096] = {0};
 		while(true){
 			// Clear buffer
@@ -88,11 +95,14 @@ int main(){
 				break;
 			}
 			// Display message
-			cout << "Received: " << string(buffer, 0, bytesrecv) << '\n';
+			datarecv = string(buffer, 0, bytesrecv);
+			cout << "Received: " << datarecv << '\n';
+			// if(datarecv){
+
+			// }
 		}
 	}else if(pid > 0){
 		// Sending Process
-		string dataSend;
 		while(true){
 			// Get user Input
 			getline(cin, dataSend);
