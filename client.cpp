@@ -9,7 +9,6 @@
 #include <signal.h>
 using namespace std;
 #define PORT 54000
-// #define IP "192.168.1.30"
 
 int main(int argc, char *argv[]){
 	string ipaddress;
@@ -42,11 +41,11 @@ int main(int argc, char *argv[]){
 		return 0;
 	}
 	cout << "Connected to Server!\n";
-	string dataSend;
 	int pid = fork();
 	if(pid == 0){
 		// Sending Process
 		do{
+			string dataSend;
 			// Get user Input
 			getline(cin, dataSend);
 			// Send to server

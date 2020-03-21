@@ -93,10 +93,7 @@ int main(){
 	}else if(pid > 0){
 		// Sending Process
 		string dataSend;
-		char buffer[4096] = {0};
 		while(true){
-			// Clear buffer
-			memset(buffer, 0, 4096);
 			// Get user Input
 			getline(cin, dataSend);
 			// Send to client
